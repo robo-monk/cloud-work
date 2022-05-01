@@ -1,4 +1,4 @@
-let nanoid=(t=21)=>crypto.getRandomValues(new Uint8Array(t)).reduce(((t,e)=>t+=(e&=63)<36?e.toString(36):e<62?(e-26).toString(36).toUpperCase():e<63?"_":"-"),"");
+let nanoid = (t = 21) => crypto.getRandomValues(new Uint8Array(t)).reduce(((t, e) => t += (e &= 63) < 36 ? e.toString(36) : e < 62 ? (e - 26).toString(36).toUpperCase() : e < 63 ? "_" : "-"), "");
 
 addEventListener('fetch', event => {
   let req = event.request;
@@ -7,11 +7,11 @@ addEventListener('fetch', event => {
 })
 
 function json(data) {
-	return new Response(JSON.stringify(data, null, 2), {
-      headers: {
-        'content-type': 'application/json;charset=UTF-8',
-      },
-    })
+  return new Response(JSON.stringify(data, null, 2), {
+    headers: {
+      'content-type': 'application/json;charset=UTF-8',
+    },
+  })
 }
 
 async function getVisits(ip) {
@@ -27,11 +27,11 @@ async function addVisit(ip) {
  * @param {Request} request
  */
 async function handleRequest(req) {
-	const clientData = {
-    visits: await getVisits(req.ip), 
-		url: req.url,
-		ip: req.ip,
-		headers: Object.fromEntries(req.headers.entries()),
+  const clientData = {
+    visits: await getVisits(req.ip),
+    url: req.url,
+    ip: req.ip,
+    headers: Object.fromEntries(req.headers.entries()),
     kv: {
       all: await BEEPOP.list(),
       non: await BEEPOP.list({ prefix: 'non-' }),
@@ -44,12 +44,12 @@ async function handleRequest(req) {
       latitude: req.cf.latitude,
       longitude: req.cf.longitude,
     }
-	}
+  }
   await addVisit(req.ip);
 
-	return json(clientData);
+  return json(clientData);
   //return new Response(`req ${req.url} ${req.ip}`, {
-    //headers: { 'content-type': 'application/plain' },
+  //headers: { 'content-type': 'application/plain' },
   //})
 }
 
