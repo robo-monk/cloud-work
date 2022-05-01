@@ -1,8 +1,12 @@
 name = "cloud-work"
 type = "javascript"
 
-account_id = ""
+account_id = "9fd23e0479c1b7592bd1fc42c4b34a95"
 workers_dev = true
 route = ""
 zone_id = ""
 compatibility_date = "2022-05-01"
+
+kv_namespaces = [ 
+  { binding = "BEEPOP", id = "afdf5e7bd47f4b7aafadbade9132408a", preview_id="c85b823cdf4e44248cafe2ebb7673e44" }
+]
